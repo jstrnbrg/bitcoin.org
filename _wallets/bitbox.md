@@ -18,10 +18,12 @@ platform:
         screenshot: "bitbox02.png"
         features: "bech32 hardware_wallet legacy_addresses segwit"
         check:
-          control: "checkgoodcontrolfull"
-          validation: "checkneutralvalidationvariable"
-          transparency: "checkgoodtransparencydeterministic"
-          environment: "checkgoodenvironmenthardware"
-          privacy: "checkneutralprivacyvariable"
-          fees: "checkneutralfeecontrolvariable"
+          hardware:
+            environment: "checkgoodenvironmenthardware"
+            transparency: "checkgoodtransparencydeterministic"
+            control: "checkgoodcontrolfull"
+          app:
+            validation: "checkneutralvalidationvariable"
+            privacy: "checkpassprivacynetworksupporttorproxy"
+            fees: "checkgoodfeecontrolfull"
 ---

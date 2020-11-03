@@ -76,9 +76,9 @@ max_wallet_text_length: 418 ## Unicode characters
 
           <div class="wallet-os-overview">
             <div class="wallet-os-checks">
-              {% for check in pageOs.check %} {% assign checkName = check[0] %} {% assign checkValue = check[1] %}
-              <div
-                class="wallet-os-check-item check{{ checkName }} {% if checkValue contains 'checkgood' %}checkgood{% elsif checkValue contains 'checkpass' %}checkpass{% elsif checkValue contains 'checkneutral' %}checkneutral{% else %}checkfail{% endif %}">
+              <h2>Hardware & Firmware</h2>
+              {% for check in pageOs.check.hardware %} {% assign checkName = check[0] %} {% assign checkValue = check[1] %}
+              <div class="wallet-os-check-item check{{ checkName }} {% if checkValue contains 'checkgood' %}checkgood{% elsif checkValue contains 'checkpass' %}checkpass{% elsif checkValue contains 'checkneutral' %}checkneutral{% else %}checkfail{% endif %}">
                 <p class="wallet-os-check-title">
                   {% translate {{checkValue}} choose-your-wallet %}
                 </p>
@@ -94,6 +94,27 @@ max_wallet_text_length: 418 ## Unicode characters
                 </div>
               </div>
               {% endfor %}
+
+              <h2>Companion App</h2>
+              <p style="margin-bottom: 1rem">Companion App: <a href="https://shiftcrypto.ch/app/">BitBoxApp</a></p>
+              {% for check in pageOs.check.app %} {% assign checkName = check[0] %} {% assign checkValue = check[1] %}
+              <div class="wallet-os-check-item check{{ checkName }} {% if checkValue contains 'checkgood' %}checkgood{% elsif checkValue contains 'checkpass' %}checkpass{% elsif checkValue contains 'checkneutral' %}checkneutral{% else %}checkfail{% endif %}">
+                <p class="wallet-os-check-title">
+                  {% translate {{checkValue}} choose-your-wallet %}
+                </p>
+                <div class="wallet-os-check-details">
+                  <p>{% translate {{checkValue}}txt choose-your-wallet %}</p>
+                  {% if checkName == 'privacy' and pageOs.privacycheck %} {% for privacycheck in pageOs.privacycheck %}
+                  <div
+                    class="check{{ privacycheck[0] }} {% if privacycheck[1] contains 'checkgood' %}checkgood{% elsif privacycheck[1] contains 'checkpass' %}checkpass{% elsif privacycheck[1] contains 'checkneutral' %}checkneutral{% else %}checkfail{% endif %}">
+                    <p class="wallet-privacy-subhead">{% translate {{privacycheck[1]}} choose-your-wallet %}</p>
+                    <p>{% translate {{privacycheck[1]}}txt choose-your-wallet %}</p>
+                  </div>
+                  {% endfor %} {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+              <p>Other supported apps: Electrum, Wasabi, Secter</p>
             </div>
           </div>
         </div>
